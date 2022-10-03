@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Android Developer/AndroidStudioProjects/LocationReminder/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1015" />
+        <entry key="..\:/Android Developer/AndroidStudioProjects/LocationReminder/app/src/main/res/drawable/ic_location.xml" value="0.1015" />
+        <entry key="..\:/Android Developer/AndroidStudioProjects/LocationReminder/app/src/main/res/drawable/ic_no_data.xml" value="0.1015" />
+        <entry key="..\:/Android Developer/AndroidStudioProjects/LocationReminder/app/src/main/res/drawable/ic_save.xml" value="0.1015" />
+        <entry key="..\:/Android Developer/AndroidStudioProjects/LocationReminder/app/src/main/res/layout/activity_authentication.xml" value="0.22" />
+        <entry key="..\:/Android Developer/AndroidStudioProjects/LocationReminder/app/src/main/res/layout/activity_reminder_description.xml" value="0.25" />
+        <entry key="..\:/Android Developer/AndroidStudioProjects/LocationReminder/app/src/main/res/layout/activity_reminders.xml" value="0.1" />
+        <entry key="..\:/Android Developer/AndroidStudioProjects/LocationReminder/app/src/main/res/layout/custom_login_layout.xml" value="0.225" />
+        <entry key="..\:/Android Developer/AndroidStudioProjects/LocationReminder/app/src/main/res/layout/fragment_reminders.xml" value="0.1" />
+        <entry key="..\:/Android Developer/AndroidStudioProjects/LocationReminder/app/src/main/res/layout/fragment_save_reminder.xml" value="0.22" />
+        <entry key="..\:/Android Developer/AndroidStudioProjects/LocationReminder/app/src/main/res/layout/fragment_select_location.xml" value="0.225" />
+        <entry key="..\:/Android Developer/AndroidStudioProjects/LocationReminder/app/src/main/res/layout/it_reminder.xml" value="0.33" />
+        <entry key="..\:/Android Developer/AndroidStudioProjects/LocationReminder/app/src/main/res/menu/map_options.xml" value="0.14537037037037037" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
