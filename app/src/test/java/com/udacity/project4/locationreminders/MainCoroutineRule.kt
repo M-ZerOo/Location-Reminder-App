@@ -9,6 +9,9 @@ import kotlinx.coroutines.test.setMain
 import org.junit.rules.TestWatcher
 import org.junit.runner.Description
 
+/* Set the main coroutine dispatcher to TestCoroutineDispatcher for unit testing, Which
+   provides control over the execution of coroutines
+ */
 @ExperimentalCoroutinesApi
 class MainCoroutineRule(val dispatcher: TestCoroutineDispatcher = TestCoroutineDispatcher()) :
     TestWatcher(),

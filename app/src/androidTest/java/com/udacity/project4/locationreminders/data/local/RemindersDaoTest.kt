@@ -35,9 +35,12 @@ class RemindersDaoTest {
         "Title3", "Description3", "Location3", 15.0, 15.0, "3"
     )
 
+    // Executes each task synchronously using Architecture Components
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
+    // Setup database for test, using in-memory database because information stored here
+    // disappears when the process is killed
     @Before
     fun setupDb() {
         database = Room.inMemoryDatabaseBuilder(
@@ -46,11 +49,13 @@ class RemindersDaoTest {
         ).build()
     }
 
+    // Close database after finishing test
     @After
     fun cleanUpDb() {
         database.close()
     }
 
+    // Save 3 new reminders to database then call getAll function and check if they were 3 reminders
     @Test
     fun insertAndGetReminders() = runBlockingTest {
         // Given
@@ -65,6 +70,7 @@ class RemindersDaoTest {
         assertThat(getAll.size, `is`(3))
     }
 
+    // Save a new reminder and call getReminderById and check if the reminder details is the same
     @Test
     fun getReminderById() = runBlockingTest {
         // Given
@@ -83,6 +89,7 @@ class RemindersDaoTest {
         assertThat(reminder.id, `is`(reminder1.id))
     }
 
+    // Save 3 new reminders and call deleteAll then check if the database is empty
     @Test
     fun deleteAll() = runBlockingTest {
         // Given
@@ -99,6 +106,9 @@ class RemindersDaoTest {
         assertThat(reminders.size, `is`(0))
     }
 
+
+    // Save 3 new reminders and delete the first reminder then check if database has only 2 reminders in
+    // the list the first reminder in the list is the second from the old list
     @Test
     fun deleteReminderById() = runBlockingTest {
         // Given

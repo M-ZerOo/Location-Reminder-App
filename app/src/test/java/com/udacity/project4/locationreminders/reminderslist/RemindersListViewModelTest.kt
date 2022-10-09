@@ -32,12 +32,15 @@ class RemindersListViewModelTest {
         "Title1", "Description2", "Location2", 10.0, 10.0, "2"
     )
 
+    // Executes each task synchronously using Architecture Components
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
+    // Sets the main dispatcher as TestCoroutineDispatcher
     @get:Rule
     var mainCoroutineRule = MainCoroutineRule()
 
+    // Setup ViewModel to use a fake data source and application context for testing
     @Before
     fun setupViewModel() {
         stopKoin()
@@ -46,11 +49,14 @@ class RemindersListViewModelTest {
             RemindersListViewModel(ApplicationProvider.getApplicationContext(), fakeDataSource)
     }
 
+    // Clear all reminders in the data source after finish testing
     @After
     fun cleanUp() = runBlockingTest {
         fakeDataSource.deleteAllReminders()
     }
 
+    // Delete all reminders and call loadReminders, then check if the list is empty and
+    // ShowNoData is true
     @Test
     fun invalidateShowNoData_noDataIsTrue() = mainCoroutineRule.runBlockingTest {
         // When
@@ -62,6 +68,8 @@ class RemindersListViewModelTest {
         assertThat(remindersListViewModel.showNoData.getOrAwaitValue(), `is`(true))
     }
 
+    // Save 2 new reminders and call loadReminders, then check that the list size is 2 and
+    // ShowNoData is false
     @Test
     fun loadReminders_showsAllReminders() = mainCoroutineRule.runBlockingTest {
         // When

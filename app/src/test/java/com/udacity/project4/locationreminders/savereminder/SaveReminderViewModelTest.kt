@@ -26,9 +26,11 @@ class SaveReminderViewModelTest {
     private lateinit var saveReminderViewModel: SaveReminderViewModel
     private lateinit var fakeDataSource: FakeDataSource
 
+    // Executes each task synchronously using Architecture Components
     @get:Rule
     var instantTaskRule = InstantTaskExecutorRule()
 
+    // Sets the main dispatcher as TestCoroutineDispatcher
     @get:Rule
     var mainCoroutineRule = MainCoroutineRule()
 
@@ -43,6 +45,7 @@ class SaveReminderViewModelTest {
         "Title3", "Description3", "", 15.0, 15.0, "3"
     )
 
+    // Setup ViewModel to use a fake data source and application context for testing
     @Before
     fun setupViewModel() {
         stopKoin()
@@ -51,6 +54,8 @@ class SaveReminderViewModelTest {
             SaveReminderViewModel(ApplicationProvider.getApplicationContext(), fakeDataSource)
     }
 
+    // Save new values for a reminder in the ViewModel then call onClear, then check if the
+    // values become null
     @Test
     fun onClear_clearLiveDataObjects() {
         // Given
@@ -76,6 +81,8 @@ class SaveReminderViewModelTest {
         assertThat(saveReminderViewModel.reminderId.getOrAwaitValue(), `is`(nullValue()))
     }
 
+    // Save a new reminder then call getReminderById with correct id value, and check if the
+    // values of this reminder is true
     @Test
     fun saveReminder_addReminderToDataSource() = mainCoroutineRule.runBlockingTest {
         // When
@@ -91,6 +98,7 @@ class SaveReminderViewModelTest {
         assertThat(check.data.id, `is`(reminder1.id))
     }
 
+    // Edit a reminder, then check the values is correct after editing
     @Test
     fun editReminder_liveDataEdited() {
         // When
@@ -105,6 +113,7 @@ class SaveReminderViewModelTest {
         assertThat(saveReminderViewModel.reminderId.getOrAwaitValue(), `is`(reminder1.id))
     }
 
+    // Check a reminder with no title using validateEnteredData method as it suppose to be false
     @Test
     fun validateData_noTitle_returnFalse() {
         // When
@@ -114,6 +123,7 @@ class SaveReminderViewModelTest {
         assertThat(trial, `is`(false))
     }
 
+    // Check a reminder with no location using validateEnteredData method as it suppose to be false
     @Test
     fun validateData_noLocation_returnFalse() {
         // When
@@ -122,5 +132,6 @@ class SaveReminderViewModelTest {
         // Then
         assertThat(trial, `is`(false))
     }
+
 
 }

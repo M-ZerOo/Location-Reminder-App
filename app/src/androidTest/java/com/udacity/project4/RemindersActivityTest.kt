@@ -49,16 +49,18 @@ class RemindersActivityTest :
     private lateinit var appContext: Application
     private lateinit var decorView: View
 
+    // Idling resource waits for data binding
     private val dataBindingIdlingResource = DataBindingIdlingResource()
 
     @get:Rule
     val activityScenarioRule = ActivityScenarioRule(RemindersActivity::class.java)
 
+    // Setup the decor view to be used in test for showing the right toast
     @Before
     fun setupDecorView() {
-        activityScenarioRule.scenario.onActivity(ActivityScenario.ActivityAction {
+        activityScenarioRule.scenario.onActivity {
             decorView = it.window.decorView
-        })
+        }
     }
 
 
@@ -68,7 +70,7 @@ class RemindersActivityTest :
      */
     @Before
     fun init() {
-        stopKoin()//stop the original app koin
+        stopKoin() // Stop the original app koin
         appContext = getApplicationContext()
         val myModule = module {
             viewModel {
@@ -99,18 +101,23 @@ class RemindersActivityTest :
         }
     }
 
+    // Idling resources used to check if the app is idle or busy, This is needed when operation are
+    // not scheduled in the main looper (for example when executed on a different thread)
     @Before
     fun registerIdlingResource() {
         IdlingRegistry.getInstance().register(EspressoIdlingResource.countingIdlingResource)
         IdlingRegistry.getInstance().register(dataBindingIdlingResource)
     }
 
+    // Unregister idling resource so it can be garbage collected and doesn't leak any memory
     @After
     fun unregisterIdlingResource() {
         IdlingRegistry.getInstance().unregister(EspressoIdlingResource.countingIdlingResource)
         IdlingRegistry.getInstance().unregister(dataBindingIdlingResource)
     }
 
+    // Delete all reminders, check that there's no data icon displayed, then add a new reminder
+    // and save it, then check the toast, title and description and displayed correctly
     @Test
     fun saveReminderAndGetToastThenCheckReminder() = runBlocking {
         repository.deleteAllReminders()

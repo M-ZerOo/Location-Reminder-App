@@ -49,9 +49,10 @@ class ReminderListFragmentTest : KoinTest {
         "Title3", "Description3", "Location3", 15.0, 15.0, "3"
     )
 
+    // Declare a ViewModel and prepare our koin for test
     @Before
     fun initRepository() {
-        stopKoin()
+        stopKoin() // Stop the original app koin
 
         val myModule = module {
             viewModel {
@@ -66,11 +67,13 @@ class ReminderListFragmentTest : KoinTest {
         }
     }
 
+    // Clean up data from any reminders after any test finish
     @After
     fun cleanUp() = runBlockingTest {
         dataSource.deleteAllReminders()
     }
 
+    // Save 3 new reminders then check if the UI is displayed correctly
     @Test
     fun remindersListDisplayedInUi() = runBlockingTest {
         // Given
@@ -91,6 +94,7 @@ class ReminderListFragmentTest : KoinTest {
         onView(withId(R.id.noDataTextView)).check(matches(not(isDisplayed())))
     }
 
+    // Delete all reminders and check if "No Data" icon and text are displayed
     @Test
     fun remindersListIsEmpty() = runBlockingTest {
         // Given
@@ -107,6 +111,7 @@ class ReminderListFragmentTest : KoinTest {
         onView(withText(R.string.no_data)).check(matches(isDisplayed()))
     }
 
+    // Being on reminders list fragment, check if "Add Reminder" button navigates to save reminder fragment
     @Test
     fun addReminderButtonNavigation() {
         // Given
