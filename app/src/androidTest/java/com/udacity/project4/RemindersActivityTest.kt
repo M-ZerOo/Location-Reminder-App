@@ -143,5 +143,38 @@ class RemindersActivityTest :
         activityScenario.close()
     }
 
+    // Pressing add new reminder fab then press save without a title and check the
+    // displayed snack bar text
+    @Test
+    fun missingTitle_showSnackBar() {
+        val activityScenario = ActivityScenario.launch(RemindersActivity::class.java)
+        dataBindingIdlingResource.monitorActivity(activityScenario)
+
+        onView(withId(R.id.addReminderFAB)).perform(click())
+        onView(withId(R.id.saveReminder)).perform(click())
+
+        onView(withId(com.google.android.material.R.id.snackbar_text))
+            .check(matches(withText(R.string.err_enter_title)))
+
+        activityScenario.close()
+    }
+
+    // Pressing add new reminder fab, add a title then press save without a location and check
+    // the displayed snack bar text
+    @Test
+    fun missingLocation_showSnackBar() {
+        val activityScenario = ActivityScenario.launch(RemindersActivity::class.java)
+        dataBindingIdlingResource.monitorActivity(activityScenario)
+
+        onView(withId(R.id.addReminderFAB)).perform(click())
+        onView(withId(R.id.reminderTitle)).perform(typeText("Title"))
+        closeSoftKeyboard()
+        onView(withId(R.id.saveReminder)).perform(click())
+
+        onView(withId(com.google.android.material.R.id.snackbar_text))
+            .check(matches(withText(R.string.err_select_location)))
+
+        activityScenario.close()
+    }
 
 }

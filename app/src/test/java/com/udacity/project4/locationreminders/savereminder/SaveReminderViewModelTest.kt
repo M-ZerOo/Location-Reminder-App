@@ -3,6 +3,7 @@ package com.udacity.project4.locationreminders.savereminder
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.udacity.project4.R
 import com.udacity.project4.locationreminders.MainCoroutineRule
 import com.udacity.project4.locationreminders.data.FakeDataSource
 import com.udacity.project4.locationreminders.data.dto.Result
@@ -113,7 +114,8 @@ class SaveReminderViewModelTest {
         assertThat(saveReminderViewModel.reminderId.getOrAwaitValue(), `is`(reminder1.id))
     }
 
-    // Check a reminder with no title using validateEnteredData method as it suppose to be false
+    // Check a reminder with no title using validateEnteredData method as it suppose to be
+    // false and shows a snack bar for missing title
     @Test
     fun validateData_noTitle_returnFalse() {
         // When
@@ -121,9 +123,11 @@ class SaveReminderViewModelTest {
 
         // Then
         assertThat(trial, `is`(false))
+        assertThat(saveReminderViewModel.showSnackBarInt.getOrAwaitValue(), `is`(R.string.err_enter_title))
     }
 
-    // Check a reminder with no location using validateEnteredData method as it suppose to be false
+    // Check a reminder with no location using validateEnteredData method as it suppose to be
+    // false and shows a snack bar for missing location
     @Test
     fun validateData_noLocation_returnFalse() {
         // When
@@ -131,6 +135,8 @@ class SaveReminderViewModelTest {
 
         // Then
         assertThat(trial, `is`(false))
+        assertThat(saveReminderViewModel.showSnackBarInt.getOrAwaitValue(), `is`(R.string.err_select_location))
+
     }
 
 
