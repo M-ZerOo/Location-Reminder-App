@@ -1,5 +1,6 @@
 package com.udacity.project4.locationreminders.reminderslist
 
+import androidx.room.PrimaryKey
 import java.io.Serializable
 import java.util.*
 
@@ -12,5 +13,6 @@ data class ReminderDataItem(
     var location: String?,
     var latitude: Double?,
     var longitude: Double?,
+    @PrimaryKey
     val id: String
 ) : Serializable
