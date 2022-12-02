@@ -1,8 +1,8 @@
 # Location-Reminder-App
 
 
-Introductions
--------------
+Introduction
+------------
 1. Create a Login screen to ask users to login using an email address or a Google account.  Upon successful login, navigate the user to the Reminders screen.   If there is no account, the app should navigate to a Register screen.
 2. Create a Register screen to allow a user to register using an email address or a Google account.
 3. Create a screen that displays the reminders retrieved from local storage. If there are no reminders, display a   "No Data"  indicator.  If there are any errors, display an error message.
@@ -42,3 +42,15 @@ This app using the following techniques:
 
 
  Ps. It's the fourth project to submit for Udacity Advanced Android Kotlin Development Nanodegree. 
+ 
+ App Screenshots
+ ---------------
+ <p align="center">
+ <img src="https://user-images.githubusercontent.com/14341736/205301987-03fe35ba-b820-4168-9799-d1c0f5a11fef.jpg" width="180" height="400">
+ <img src="https://user-images.githubusercontent.com/14341736/205301994-66214903-a50c-408f-a31f-6d9dc2428597.jpg" width="180" height="400">
+ <img src="https://user-images.githubusercontent.com/14341736/205302017-745ba5fb-cac9-47b1-bb7f-2d914c71503b.jpg" width="180" height="400">
+ <img src="https://user-images.githubusercontent.com/14341736/205302022-ec627d27-ebed-4b4d-bcd3-d3f47f9f7c2c.jpg" width="180" height="400">
+ <img src="https://user-images.githubusercontent.com/14341736/205302026-a3bd63d9-da17-449b-8cb9-50e4ad126774.jpg" width="180" height="400">
+ <img src="https://user-images.githubusercontent.com/14341736/205302042-123e3648-855c-44f8-8d97-d5aa8fda880a.jpg" width="180" height="400">
+ <img src="https://user-images.githubusercontent.com/14341736/205302049-6c960130-7ba9-4c94-a31f-df228bc92032.jpg" width="180" height="400">
+ </p>
